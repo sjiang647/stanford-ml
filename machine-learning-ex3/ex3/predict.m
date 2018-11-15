@@ -23,14 +23,22 @@ p = zeros(size(X, 1), 1);
 %size(Theta1)
 %size(Theta2)
 %size(X)
-X = [ones(size(X, 1), 1) X];
-for i = 1:m
-    a1 = X(i, :)';
-    a2 = [1; sigmoid(Theta1 * a1)];
-    a3 = sigmoid(Theta2 * a2);
-    [m, n] = max(a3');
-    p(i) = n;
-end;
+
+%X = [ones(size(X, 1), 1) X];
+%for i = 1:m
+%    a1 = X(i, :)';
+%    a2 = [1; sigmoid(Theta1 * a1)];
+%    a3 = sigmoid(Theta2 * a2);
+%    [m, n] = max(a3');
+%    p(i) = n;
+%end;
+
+X1 = [ones(size(X, 1), 1) X];
+a2 = [ones(m, 1) sigmoid(X1 * Theta1')];
+a3 = sigmoid(a2 * Theta2');
+[m, n] = max(a3');
+p = n';
+
 
 
 
